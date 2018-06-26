@@ -1,0 +1,8 @@
+html{background-color:#EBF6F5;}
+#root{background-color:#EBF6F5; margin-bottom:15px;}
+
+@media print{
+	html{background:none;}
+	#root{background:none;}
+
+}

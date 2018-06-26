@@ -1,0 +1,11 @@
+.App {	
+}
+
+h1,h2,h3{
+	text-align:center;
+}
+
+label{text-align:right;font-weight:bold;}
+
+a .media-body {color:black;}
+a:hover {text-decoration:none;}
