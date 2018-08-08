@@ -1,15 +1,15 @@
 import React, {Component} from 'react'
-import InsertRecipeIngredientList from './insertRecipeIngredientList'
+import IngredientList from './IngredientList'
 
 class RecipeForm extends Component {	
 	constructor(props){
 		super(props);
 		this.state = {'recipe':this.props.recipe};
-		this.insertRecipe=this.insertRecipe.bind(this);
+		this.processEvent=this.processEvent.bind(this);
 		this.setValue=this.setValue.bind(this);
 	}
 
-	insertRecipe(){
+	processEvent(){
 		console.log(this.state);
 	}
 
@@ -40,7 +40,7 @@ class RecipeForm extends Component {
 						<input type="text" className="form-control" onChange={(e) => this.setValue(e.target.value,"tp")} id="inputPreparationTime" placeholder="Preparation Time" value={this.state.recipe.tp} />
 					</div>
 				</div>					
-				<InsertRecipeIngredientList ingredientList={this.state.recipe.ingredients} />
+				<IngredientList ingredientList={this.state.recipe.ingredients} />
 				<h2>Instructions</h2>
 				<div className="form-group row">						
 					<div className="offset-sm-2 col-sm-9">
@@ -49,7 +49,7 @@ class RecipeForm extends Component {
 				</div>		
 				<div className="form-group row">
 					<div className="offset-sm-10 col-sm-2">
-						<button type="button" onClick={this.insertRecipe}   className="btn btn-primary">Insert Recipe</button>
+						<button type="button" onClick={this.processEvent}   className="btn btn-outline-primary">{this.props.btnText}</button>
 					</div>
 				</div>
 			</form>

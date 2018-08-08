@@ -1,8 +1,11 @@
-html{background-color:#EBF6F5;}
-#root{background-color:#EBF6F5; margin-bottom:15px;}
+html{background-color:#333;}
+#root{background-color:#333; color:white; margin-bottom:15px;}
+a.recipe-item{text-decoration:none;color:#eee;}
+
 
 @media print{
 	html{background:none;}
 	#root{background:none;}
-
+	.bg-dark{background:none !important;color:#000;}
+	.list-group-item-dark{background:none !important;color:#000;}
 }

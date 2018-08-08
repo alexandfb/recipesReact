@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import InsertRecipeIngredientListItem from './insertRecipeIngredientListItem'
+import IngredientListItem from './IngredientListItem'
 
-class InsertRecipeIngredientList extends Component {
+class IngredientList extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
@@ -10,9 +10,7 @@ class InsertRecipeIngredientList extends Component {
 		}
 		this.addNewIngredientRow=this.addNewIngredientRow.bind(this);
 		this.removeIngredientRow=this.removeIngredientRow.bind(this);
-
 	}
-
 
 	addNewIngredientRow(){
 		let ingredientList = this.state.ingredientList;
@@ -26,31 +24,27 @@ class InsertRecipeIngredientList extends Component {
 		console.log(row);
 		let ingredientList = this.state.ingredientList;
 		ingredientList.splice(row,1);
-
 		console.log(ingredientList);
 		this.setState({ingredientList: ingredientList});
 	}
 
 	render(){		
-
 		const ingredientList = this.state.ingredientList.map((obj,index) => (			
-			<InsertRecipeIngredientListItem key={obj.id} ingredientList={obj} index={index} onRowRemoval={this.removeIngredientRow} />
-			));
+			<IngredientListItem key={obj.id} ingredientList={obj} index={index} onRowRemoval={this.removeIngredientRow} />
+		));
 
 		return (
 			<div>
-			<div className="row">
-				<h2 className="col-md-4 offset-md-4"> Ingredients</h2> 
-				<div className="col-md-4">
-					<button type="button" onClick={this.addNewIngredientRow} className="btn btn-success">Add Ingredient</button>
-				</div>
-			</div>
-			    
-				{ingredientList}
-			
+				<div className="row">
+					<h2 className="col-md-4 offset-md-4"> Ingredients</h2> 
+					<div className="col-md-4">
+						<button type="button" onClick={this.addNewIngredientRow} className="btn btn-outline-success">Add Ingredient</button>
+					</div>
+				</div>			    
+				{ingredientList}			
 			</div>
 		);
 	}
 }
 
-export default InsertRecipeIngredientList;
+export default IngredientList;

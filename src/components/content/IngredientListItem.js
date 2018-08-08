@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-class InsertRecipeIngredientListItem extends Component {
+class IngredientListItem extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
@@ -14,15 +14,14 @@ class InsertRecipeIngredientListItem extends Component {
 		this.setState({ [field] : newValue});
 	}
 
-	render(){
-		
-		const options = ["at Will","Cups","Grams"].map(function(X) {
-	    	return <option key={X} value={X}>{X}</option>;
-	    });
+	render(){		
+		const options = ["at Will","Cups","Grams"].map(function(value) {
+	    return <option key={value} value={value}>{value}</option>;
+	  });
 
-	    options.unshift(
-	      <option key="other" disabled> -- Select Unit -- </option>
-	    );		
+	  options.unshift(
+	    <option key="other" disabled> -- Select Unit -- </option>
+	  );		
 		return (
 			<div className="form-group row" id={this.props.ingredientList.id}>		
 				<div className="offset-sm-2 col-sm-4">
@@ -35,13 +34,13 @@ class InsertRecipeIngredientListItem extends Component {
 				    <select className="form-control"  onChange={(e) => this.setValue(e.target.value,"unit")} defaultValue=" -- Select Unit -- ">{options}</select>					
 				</div>
 				<button type="button" onClick={(e) => this.props.onRowRemoval(this.props.index)} className="close" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
+					<span aria-hidden="true" className="text-danger">&times;</span>
 				</button>
 			</div>			
 		);
 	}
 }
 
-export default InsertRecipeIngredientListItem;
+export default IngredientListItem;
 
 
