@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 class InsertRecipeButton extends Component {
 	render(){
 		return(
-			<div className="col-2">
+			<div className="col-md-2 col-xs-12">
 				<Link to="/insert/"  className="btn btn-outline-success">Add Recipe</Link>						
 			</div>
 		)

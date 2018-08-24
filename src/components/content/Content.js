@@ -7,13 +7,14 @@ import EditRecipePanel 				from './EditRecipePanel';
 import NotFound 				from './NotFound';
 import Home 					from './Home';
 import { connect } from 'react-redux'
-import { getRecipes } from '../../actions/recipes'
+import { getRecipes,initMaxIngredientValue } from '../../actions/recipes'
 import { withRouter } from 'react-router'
 
 class Content extends Component {
 
 	componentDidMount(){
 		this.props.getRecipes();
+		this.props.initMaxIngredientValue();
 	}
 
 	render(){
@@ -40,7 +41,8 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    getRecipes: (filter) => { dispatch(getRecipes(filter)) }
+    getRecipes: (filter) => { dispatch(getRecipes(filter)) },
+    initMaxIngredientValue:(newValue) => { dispatch(initMaxIngredientValue(newValue)) }     
   }
 }
 

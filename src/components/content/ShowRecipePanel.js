@@ -1,14 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getRecipe } from '../../actions/recipes'
-import { withRouter } from 'react-router'
+import { getRecipe,deleteRecipe } from '../../actions/recipes'
+import { withRouter,Redirect } from 'react-router'
 import {Link} from 'react-router-dom'
+
 
 class ShowRecipePanel extends Component {
 
 	componentDidMount(){
 		const recipeId = this.props.match.params.id;
 		this.props.getRecipe(recipeId);
+	}
+
+
+	deleteRecipe(recipeId){
+		this.props.deleteRecipe(recipeId);
+		console.log("Deleting Recipe", recipeId);
+		this.props.history.push('/Search');
 	}
 
 	render(){
@@ -27,7 +35,7 @@ class ShowRecipePanel extends Component {
 			<div className="row">
 				<div className="col-md-8 offset-md-2 text-center d-print-none mt-5">
 				  <Link to={`/edit/${recipeId}`} key={recipeId} className="col-md-2 offset-md-1 btn btn-outline-primary" >Edit Recipe</Link>
-					<button className="col-md-2 offset-md-2 btn btn-outline-danger" type="button">Delete Recipe</button>
+					<button className="col-md-2 offset-md-2 btn btn-outline-danger" onClick={(e) => this.deleteRecipe(recipeId)} type="button">Delete Recipe</button>
 					<button className="col-md-2 offset-md-2 btn btn-outline-info" onClick={window.print} type="button">Print Recipe</button>
 				</div>
 				<div className="col-12">
@@ -67,7 +75,8 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    getRecipe: (id) => { dispatch(getRecipe(id)) }
+    getRecipe: (id) => { dispatch(getRecipe(id)) },
+    deleteRecipe: (id) => { dispatch(deleteRecipe(id)) }
   }
 }
 

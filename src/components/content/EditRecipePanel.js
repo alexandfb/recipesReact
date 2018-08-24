@@ -1,38 +1,43 @@
 import React, { Component } from 'react'
 import RecipeForm from './RecipeForm'
+import { connect } from 'react-redux'
+import { getRecipe } from '../../actions/recipes'
+import { withRouter } from 'react-router'
 
 class EditRecipePanel extends Component {
-	constructor(props){
-		super(props);
 
-		this.state = {
-			maxvalue : 10, 
-			recipe: {
-	     	id:"10",
-	     	title: "Crock Pot Roast",
-	     	ingredients: [
-          {id:"1","amount": "1","name": " beef roast","unit": "Meat"},
-          {id:"2","amount": "1 package", "name": "brown gravy mix","unit": "Baking" },
-          {id:"3","amount": "1 package", "name": "dried Italian salad dressing mix", "unit": "Condiments"},
-          {id:"4","amount": "1 package", "name": "dry ranch dressing mix","unit": "Condiments"   },
-          {id:"5","amount": "1/2 cup",   "name": "water",    "unit": "Drinks" }
-      	],
-      	instructions: "Place beef roast in crock pot.\n Mix the dried mixes together in a bowl and sprinkle over the roast.\n Pour the water around the roast.\n Cook on low for 7-9 hours.",
-      	sv: "10 people",
-      	tp: "10 minutes",
-      	url:"/cookbook.gif",
-	    } 
-		}
+	componentDidMount(){
+		const recipeId = this.props.match.params.id;		
+		this.props.getRecipe(recipeId);
 	}
 
 	render(){
+
+			const recipe = this.props.selectedRecipe;
+		
+		if (!recipe) {
+		    return <div>Sorry, but the recipe was not found</div>
+		}
+
 		return(
 			<div>
 				<h1> Edit Recipe</h1>
-				<RecipeForm btnText="Edit Recipe" recipe={this.state.recipe} />
+				<RecipeForm btnText="Edit Recipe" recipe={recipe} />
 			</div>
 		)
 	}	  
 }
 
-export default EditRecipePanel;
+function mapStateToProps (state) {
+  return {
+    selectedRecipe: state.recipes.selectedRecipe
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    getRecipe: (id) => { dispatch(getRecipe(id)) }
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EditRecipePanel));

@@ -8,7 +8,7 @@ import { withRouter } from 'react-router'
 
 class SearchBar extends Component {
 
-	componentWillMount() {
+	componentDidMount() {
      this.delayedCallback = _.debounce(function (event) {
        this.props.getRecipes(event.target.value);
      }, 300);
@@ -21,7 +21,7 @@ class SearchBar extends Component {
 
 	render(){
 		return(
-  		<div className="col-10 input-group">
+  		<div className="col-md-10 input-group">
 				<input id="search-bar" type="text" className="form-control" onChange={event => this.onInputChange(event)} placeholder="Search..."/>
 				<div className="input-group-append">
 					<Link to="/search/"  className="btn btn-outline-primary search-button">Search</Link>						

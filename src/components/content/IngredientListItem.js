@@ -4,6 +4,7 @@ class IngredientListItem extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
+			id: props.ingredientList.id,
 			name: props.ingredientList.name,
 			amount: props.ingredientList.amount,
 			unit: props.ingredientList.unit			
@@ -15,7 +16,7 @@ class IngredientListItem extends Component {
 	}
 
 	render(){		
-		const options = ["at Will","Cups","Grams"].map(function(value) {
+		const options = ["at Will","Cups","Grams","Unit","Package", "Tsp", "Tbsp"].map(function(value) {
 	    return <option key={value} value={value}>{value}</option>;
 	  });
 
@@ -31,7 +32,7 @@ class IngredientListItem extends Component {
 					<input type="text" className="form-control" onChange={(e) => this.setValue(e.target.value,"amount")} id="inputIngredientAmount" placeholder="0" value={this.state.amount} />
 				</div>
 				<div className="col-sm-3">
-				    <select className="form-control"  onChange={(e) => this.setValue(e.target.value,"unit")} defaultValue=" -- Select Unit -- ">{options}</select>					
+				    <select className="form-control"  onChange={(e) => this.setValue(e.target.value,"unit")} defaultValue={this.props.ingredientList.unit || ''} >{options}</select>					
 				</div>
 				<button type="button" onClick={(e) => this.props.onRowRemoval(this.props.index)} className="close" aria-label="Close">
 					<span aria-hidden="true" className="text-danger">&times;</span>

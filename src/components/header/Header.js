@@ -5,7 +5,7 @@ import InsertRecipeButton from '../header/InsertRecipeButton';
 class Header extends Component {
 	render(){
 		return(
-			<div className="col-12 row mt-5 d-print-none">
+			<div className="col-md-12 col-sm-12 row mt-5 d-print-none">
 				<SearchBar />
 				<InsertRecipeButton />
 			</div>
