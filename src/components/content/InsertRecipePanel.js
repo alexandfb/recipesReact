@@ -5,31 +5,24 @@ import { initRecipe } from '../../actions/recipes'
 import { withRouter } from 'react-router'
 
 class InsertRecipePanel extends Component {
-	constructor(props){
-		super(props);
+  componentDidMount () {
+    this.props.initRecipe()
+  }
 
-	}
+  render () {
+    const recipe = this.props.selectedRecipe
 
-	componentDidMount(){		
-		this.props.initRecipe();
-	}
+    if (!recipe) {
+      return <div>Sorry, but the recipe was not found</div>
+    }
 
-
-	render(){
-
-		const recipe = this.props.selectedRecipe;
-		
-		if (!recipe) {
-		    return <div>Sorry, but the recipe was not found</div>
-		}
-		
-		return(
-			<div>
-				<h1> Add Recipe</h1>
-				<RecipeForm btnText="Insert Recipe" recipe={recipe} />
-			</div>
-		)
-	}	  
+    return (
+      <div>
+        <h1> Add Recipe</h1>
+        <RecipeForm btnText='Insert Recipe' recipe={recipe} />
+      </div>
+    )
+  }
 }
 
 function mapStateToProps (state) {
@@ -44,4 +37,4 @@ function mapDispatchToProps (dispatch) {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(InsertRecipePanel));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(InsertRecipePanel))

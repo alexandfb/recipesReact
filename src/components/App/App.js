@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import Header from '../header/Header';
-import Content from '../content/Content';
+import React, { Component } from 'react'
+import Header from '../header/Header'
+import Content from '../content/Content'
 
 class App extends Component {
   render () {
     return (
-      <div className="container fluid">
-        <div className="row">
+      <div className='container fluid'>
+        <div className='row'>
           <Header />
         </div>
-        <div className="row">
+        <div className='row'>
           <Content />
         </div>
       </div>
@@ -17,4 +17,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App

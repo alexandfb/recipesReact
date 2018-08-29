@@ -10,7 +10,7 @@ import App from './components/App/App'
 
 render(
   <Provider store={store}>
-  	<BrowserRouter>
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </Provider>,

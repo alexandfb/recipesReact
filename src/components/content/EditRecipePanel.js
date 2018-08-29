@@ -5,27 +5,24 @@ import { getRecipe } from '../../actions/recipes'
 import { withRouter } from 'react-router'
 
 class EditRecipePanel extends Component {
+  componentDidMount () {
+    const recipeId = this.props.match.params.id
+    this.props.getRecipe(recipeId)
+  }
 
-	componentDidMount(){
-		const recipeId = this.props.match.params.id;		
-		this.props.getRecipe(recipeId);
-	}
+  render () {
+    const recipe = this.props.selectedRecipe
+    if (!recipe) {
+      return <div>Sorry, but the recipe was not found</div>
+    }
 
-	render(){
-
-			const recipe = this.props.selectedRecipe;
-		
-		if (!recipe) {
-		    return <div>Sorry, but the recipe was not found</div>
-		}
-
-		return(
-			<div>
-				<h1> Edit Recipe</h1>
-				<RecipeForm btnText="Edit Recipe" recipe={recipe} />
-			</div>
-		)
-	}	  
+    return (
+      <div>
+        <h1> Edit Recipe</h1>
+        <RecipeForm btnText='Edit Recipe' recipe={recipe} />
+      </div>
+    )
+  }
 }
 
 function mapStateToProps (state) {
@@ -40,4 +37,4 @@ function mapDispatchToProps (dispatch) {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EditRecipePanel));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EditRecipePanel))
