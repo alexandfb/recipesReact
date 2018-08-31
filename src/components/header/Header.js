@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import SearchBar from '../header/SearchBar'
-import InsertRecipeButton from '../header/InsertRecipeButton'
+import SearchBar from '../menuBar/SearchBarContainer'
+import InsertRecipeButton from '../menuBar/InsertRecipeButton'
 
 class Header extends Component {
   render () {

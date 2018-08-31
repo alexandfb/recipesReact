@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-import IngredientList from './IngredientList'
-import { connect } from 'react-redux'
-import { updateField } from '../../actions/recipes'
-import { withRouter } from 'react-router'
+import IngredientList from '../ingredientList/IngredientListContainer'
 
 class RecipeForm extends Component {
   constructor (props) {
@@ -61,16 +58,4 @@ class RecipeForm extends Component {
   }
 }
 
-function mapStateToProps (state) {
-  return {
-    selectedRecipe: state.recipes.selectedRecipe
-  }
-}
-
-function mapDispatchToProps (dispatch) {
-  return {
-    updateField: (updatedRecipe) => { dispatch(updateField(updatedRecipe)) }
-  }
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RecipeForm))
+export default RecipeForm

@@ -1,12 +1,9 @@
 import React, {Component} from 'react'
-import { connect } from 'react-redux'
-import { updateIngredientItem } from '../../actions/recipes'
-import { withRouter } from 'react-router'
 
 class IngredientListItem extends Component {
   updateField (newValue, field, ingredientItem) {
     Object.defineProperty(ingredientItem, field, { value: newValue })
-    this.props.updateIngredientItem(this.props.selectedRecipe, ingredientItem)
+    this.props.updateIngredientItem(ingredientItem)
   }
 
   render () {
@@ -48,16 +45,4 @@ class IngredientListItem extends Component {
   }
 }
 
-function mapStateToProps (state) {
-  return {
-    selectedRecipe: state.recipes.selectedRecipe
-  }
-}
-
-function mapDispatchToProps (dispatch) {
-  return {
-    updateIngredientItem: (selectedRecipe, ingredientItem) => { dispatch(updateIngredientItem(selectedRecipe, ingredientItem)) }
-  }
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(IngredientListItem))
+export default IngredientListItem

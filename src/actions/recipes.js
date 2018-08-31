@@ -62,8 +62,9 @@ export function updateField (updatedRecipe) {
   }
 }
 
-export function updateIngredientList (selectedRecipe, newIngredientList) {
-  return dispatch => {
+export function updateIngredientList (newIngredientList) {
+  return (dispatch, getState) => {
+    let selectedRecipe = getState().recipes.selectedRecipe
     selectedRecipe.ingredients = newIngredientList
 
     dispatch({
@@ -73,9 +74,9 @@ export function updateIngredientList (selectedRecipe, newIngredientList) {
   }
 }
 
-export function updateIngredientItem (selectedRecipe, ingredientItem) {
+export function updateIngredientItem (ingredientItem) {
   return (dispatch, getState) => {
-    // const selectedRecipe = getState().selectedRecipe;    <---- UPDATE params and check getState function
+    let selectedRecipe = getState().recipes.selectedRecipe
     const index = selectedRecipe.ingredients.indexOf(ingredientItem)
     selectedRecipe.ingredients[index] = ingredientItem
 
@@ -103,4 +104,14 @@ export function setMaxIngredientValue (maxValue) {
       payload: maxValue
     })
   }
+}
+
+export function submitRecipeForm (type) {
+  const recipes = null
+  return dispatch => {
+    dispatch({
+      type: 'SUBMIT_RECIPE_FORM',
+      payload: recipes
+    })
+  } 
 }

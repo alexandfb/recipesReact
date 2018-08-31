@@ -1,9 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { getRecipes } from '../../actions/recipes'
-import { withRouter } from 'react-router'
 
 class SearchBar extends Component {
   componentDidMount () {
@@ -29,16 +26,4 @@ class SearchBar extends Component {
   }
 }
 
-function mapStateToProps (state) {
-  return {
-    recipes: state.recipes
-  }
-}
-
-function mapDispatchToProps (dispatch) {
-  return {
-    getRecipes: (filter) => { dispatch(getRecipes(filter)) }
-  }
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchBar))
+export default SearchBar

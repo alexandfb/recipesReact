@@ -1,8 +1,5 @@
 import React, {Component} from 'react'
-import IngredientListItem from './IngredientListItem'
-import { connect } from 'react-redux'
-import { updateIngredientList, setMaxIngredientValue } from '../../actions/recipes'
-import { withRouter } from 'react-router'
+import IngredientListItem from './ingredientListItem/IngredientListItemContainer'
 
 class IngredientList extends Component {
   constructor (props) {
@@ -15,7 +12,7 @@ class IngredientList extends Component {
     let ingredientList = this.props.selectedRecipe.ingredients
     const maxVal = this.props.maxIngredientId + 1
     ingredientList.push({id: maxVal, 'amount': '', 'name': '', 'unit': ''})
-    this.props.updateIngredientList(this.props.selectedRecipe, ingredientList)
+    this.props.updateIngredientList(ingredientList)
     this.props.setMaxIngredientValue(maxVal)
   }
 
@@ -24,7 +21,7 @@ class IngredientList extends Component {
     let ingredientList = this.props.selectedRecipe.ingredients
     ingredientList.splice(row, 1)
     console.log(ingredientList)
-    this.props.updateIngredientList(this.props.selectedRecipe, ingredientList)
+    this.props.updateIngredientList(ingredientList)
   }
 
   render () {
@@ -53,18 +50,4 @@ class IngredientList extends Component {
   }
 }
 
-function mapStateToProps (state) {
-  return {
-    selectedRecipe: state.recipes.selectedRecipe,
-    maxIngredientId: state.recipes.maxIngredientId
-  }
-}
-
-function mapDispatchToProps (dispatch) {
-  return {
-    updateIngredientList: (selectedRecipe, newIngredientlist) => { dispatch(updateIngredientList(selectedRecipe, newIngredientlist)) },
-    setMaxIngredientValue: (newValue) => { dispatch(setMaxIngredientValue(newValue)) }
-  }
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(IngredientList))
+export default IngredientList
